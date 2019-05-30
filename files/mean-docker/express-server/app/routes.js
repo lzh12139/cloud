@@ -28,14 +28,17 @@ module.exports = function (app) {
 	});
 
 	app.post('/api/login', function (req, res) {
-		User.find({
-			name: req.body.name,
-			password: req.body.password,
-		}, function (err, user) {
-			if (err)
-				res.send(err);
-			res.json(user)
-		});
+		check_login(req,function(status){
+			if (status === "login-success")
+				User.find({
+					name: req.body.name,
+					password: req.body.password,
+				}, function (err, user) {
+					if (err)
+						res.send(err);
+					res.json(user)
+				});
+		})
 	});
 
 	app.get('/api/info', function (req, res) {
@@ -61,7 +64,6 @@ module.exports = function (app) {
 			if (status === "login-success")
 				User.find({
 					name: req.body.name,
-					password: req.body.password,
 				}, function (err, user1) {
 					if (user1.length != 0) {
 						let oldBalance = Number(user1[0].balance)
@@ -70,7 +72,6 @@ module.exports = function (app) {
 							amount = 0
 						User.update({
 							name: req.body.name,
-							password: req.body.password,
 						}, {
 							$set: {
 								'balance': oldBalance + amount
@@ -78,7 +79,6 @@ module.exports = function (app) {
 						}, function () {
 							User.find({
 									name: req.body.name,
-									password: req.body.password,
 								},
 								function (err, user2) {
 									res.json(user2)
@@ -96,7 +96,6 @@ module.exports = function (app) {
 			if (status === "login-success")
 				User.find({
 					name: req.body.name,
-					password: req.body.password,
 				}, function (err, user1) {
 					if (user1.length != 0) {
 						let oldBalance = Number(user1[0].balance)
@@ -107,7 +106,6 @@ module.exports = function (app) {
 							amount = oldBalance
 						User.update({
 							name: req.body.name,
-							password: req.body.password,
 						}, {
 							$set: {
 								'balance': oldBalance - amount
@@ -115,7 +113,6 @@ module.exports = function (app) {
 						}, function () {
 							User.find({
 									name: req.body.name,
-									password: req.body.password,
 								},
 								function (err, user2) {
 									res.json(user2)
@@ -134,7 +131,6 @@ module.exports = function (app) {
 			if (status === "login-success")
 				User.find({
 					name: req.body.name,
-					password: req.body.password,
 				}, function (err, user1) {
 					if (user1.length != 0) {
 						User.find({
@@ -164,7 +160,6 @@ module.exports = function (app) {
 									}, function () {
 										User.find({
 												name: req.body.name,
-												password: req.body.password,
 											},
 											function (err, user2) {
 												res.json(user2)
@@ -185,7 +180,6 @@ module.exports = function (app) {
 			if (status === "login-success")
 				User.find({
 					name: req.body.name,
-					password: req.body.password,
 				}, function (err, user1) {
 					if (user1.length != 0) {
 						var time = new Date().getTime();
