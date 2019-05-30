@@ -32,7 +32,6 @@ module.exports = function (app) {
 			if (status === "login-success")
 				User.find({
 					name: req.body.name,
-					password: req.body.password,
 				}, function (err, user) {
 					if (err)
 						res.send(err);
