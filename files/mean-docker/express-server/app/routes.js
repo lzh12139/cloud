@@ -234,33 +234,24 @@ module.exports = function (app) {
 function check_login(req, callback) {
 	let name = req.body.name;
 	let pw = req.body.password;
-	let time = JSON.parse(req.body.time);
+	let time = req.body.time;
+	let now=Date.now();
 
-	get_date(function (now) {
-		if (now - time > 15 * 60)
-			callback("re-login");
-		else {
-			User.find({
-				name: name,
-			}, function (err, user) {
-				if (user.length === 0)
-					callback("no-user");
-				else {
-					let pw_right = md5.b64_hmac_md5(user[0].password, time)
-					if (pw_right === pw)
-						callback("login-success");
-					else
-						callback("wrong-password");
-				}
-			})
-		}
-	})
-}
-
-function get_date(callback) {
-	let str = 0;
-	let date = new Date();
-	str = date.getFullYear() * 10000000000 + (date.getMonth() + 1) * 60 * 60 * 24 * +date.getDate() * 60 * 60 * 24 +
-		date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds();
-	callback(str);
+	if (now - time > 15 * 60)
+		callback("re-login");
+	else {
+		User.find({
+			name: name,
+		}, function (err, user) {
+			if (user.length === 0)
+				callback("no-user");
+			else {
+				let pw_right = md5.b64_hmac_md5(user[0].password, time)
+				if (pw_right === pw)
+					callback("login-success");
+				else
+					callback("wrong-password");
+			}
+		})
+	}
 }
