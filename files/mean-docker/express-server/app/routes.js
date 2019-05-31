@@ -27,7 +27,7 @@ module.exports = function (app) {
 
     app.post('/api/login', function (req, res) {
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user) {
@@ -55,7 +55,7 @@ module.exports = function (app) {
         // 存钱
         // req.body.amount
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -87,7 +87,7 @@ module.exports = function (app) {
         // 取钱
         // req.body.amount
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -121,7 +121,7 @@ module.exports = function (app) {
         // 转账
         // req.body.amount
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -169,7 +169,7 @@ module.exports = function (app) {
     app.post('/api/buy1', function (req, res) {
         // 购买理财产品
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -197,7 +197,7 @@ module.exports = function (app) {
 
     app.post('/api/buy2', function (req, res) {
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -226,7 +226,7 @@ module.exports = function (app) {
 
     app.get('/api/buyRecord', function (req, res) {
         check_login(req, function (status) {
-            if (status === "login-success")
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
