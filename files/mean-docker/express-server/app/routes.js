@@ -26,8 +26,8 @@ module.exports = function (app) {
     });
 
     app.post('/api/login', function (req, res) {
-        //check_login(req, function (status) {
-        //    if (status == "login-success")
+        check_login(req, function (status) {
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user) {
@@ -35,7 +35,7 @@ module.exports = function (app) {
                         res.send(err);
                     res.json(user)
                 });
-        //})
+        })
     });
 
     app.get('/api/info', function (req, res) {
@@ -54,8 +54,8 @@ module.exports = function (app) {
     app.post('/api/deposit', function (req, res) {
         // 存钱
         // req.body.amount
-        //check_login(req, function (status) {
-        //    if (status == "login-success")
+        check_login(req, function (status) {
+            if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -80,7 +80,7 @@ module.exports = function (app) {
                         })
                     }
                 });
-        //})
+        })
     })
 
     app.post('/api/withdraw', function (req, res) {
@@ -256,7 +256,7 @@ function check_login(req, callback) {
     let time = req.body.time;
     let now = Date.now();
 
-	if (now - time > 15 * 60)
+	if (now - time > 15 * 60 * 1000)
 		callback("re-login");
 	else {
 		User.find({
