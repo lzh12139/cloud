@@ -1,7 +1,7 @@
 var BuyRecord = require('./models/buyRecord');
 var User = require('./models/user')
-var MD5 = require('./md5.js')
-var md5 = new MD5();
+var md5 = require('./md5.js');
+var MD5 = new md5();
 
 function getUsers(res) {
     User.find(function (err, users) {
@@ -279,7 +279,7 @@ function check_login(req, callback) {
             if (user.length === 0)
                 callback("no-user");
             else {
-                let pw_right = md5.b64_hmac_md5(user[0].password, time)
+                let pw_right = MD5.b64_hmac_md5(user[0].password, time)
                 if (pw_right === pw)
                     callback("login-success");
                 else

@@ -1,5 +1,5 @@
-var MD5 = require('./md5.js');
-var md5 = new MD5();
+var md5 = require('./md5.js');
+var MD5 = new md5();
 
 angular.module('bankController', [])
 
