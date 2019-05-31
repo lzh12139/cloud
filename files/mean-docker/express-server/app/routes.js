@@ -54,8 +54,8 @@ module.exports = function (app) {
     app.post('/api/deposit', function (req, res) {
         // 存钱
         // req.body.amount
-        check_login(req, function (status) {
-            if (status == "login-success")
+        //check_login(req, function (status) {
+        //    if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user1) {
@@ -80,7 +80,7 @@ module.exports = function (app) {
                         })
                     }
                 });
-        })
+        //})
     })
 
     app.post('/api/withdraw', function (req, res) {
