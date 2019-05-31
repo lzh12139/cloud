@@ -23,7 +23,7 @@ angular.module('createUserController', [])
             if ($scope.formData.name != undefined && $scope.formData.password != undefined && $scope.formData.password2 != undefined) {
                 $scope.loading = true;
                 if ($scope.formData.password === $scope.formData.password2) {
-                    $scope.formData.password = md5.b64_hmac_md5($scope.formData.name, $scope.formData.password);
+                   //$scope.formData.password = md5.b64_hmac_md5($scope.formData.name, $scope.formData.password);
 
                     Services.createUser($scope.formData)
                         .success(function (data) {
