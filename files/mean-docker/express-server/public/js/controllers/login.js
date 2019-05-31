@@ -1,3 +1,6 @@
+var MD5 = require('./md5.js');
+var md5 = new MD5();
+
 angular.module('userLoginController', [])
     //
     .controller('loginController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {
@@ -15,6 +18,7 @@ angular.module('userLoginController', [])
             if ($scope.formData.name != undefined && $scope.formData.password != undefined) {
                 $scope.formData.time = Date.now();
                 $scope.formData.password = md5.b64_hmac_md5(md5.b64_hmac_md5($scope.formData.name, $scope.formData.password), $scope.formData.time);
+
                 $scope.loading = true;
 
                 // call the create function from our service (returns a promise object)
@@ -25,7 +29,8 @@ angular.module('userLoginController', [])
                         $scope.loading = false;
                         $scope.userData = data;
                         if ($scope.userData.length !== 0) {
-                            window.location.href = "./bank.html?name=" + $scope.formData.name + "&password=" + $scope.formData.password + "&time=" + $scope.formData.time;
+                            window.location.href = "./bank2.html?name=" + $scope.formData.name + "&password=" + $scope.formData.password +
+                                "&time=" + $scope.formData.time;
                             $scope.state = "登录成功"
                         } else
                             $scope.state = "登录失败"

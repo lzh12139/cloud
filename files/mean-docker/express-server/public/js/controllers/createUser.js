@@ -1,5 +1,6 @@
 var MD5 = require('./md5.js');
 var md5 = new MD5();
+
 angular.module('createUserController', [])
 
     .controller('userController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {
@@ -23,7 +24,7 @@ angular.module('createUserController', [])
                 $scope.loading = true;
                 if ($scope.formData.password === $scope.formData.password2) {
                     $scope.formData.password = md5.b64_hmac_md5($scope.formData.name, $scope.formData.password);
-                    console.log($scope.formData.password);
+
                     Services.createUser($scope.formData)
                         .success(function (data) {
                             $scope.loading = false;
