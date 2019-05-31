@@ -1,3 +1,6 @@
+var md5 = require('./md5.js');
+var MD5 = new md5();
+
 angular.module('userLoginController', [])
     //
     .controller('loginController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {
@@ -14,7 +17,12 @@ angular.module('userLoginController', [])
             // if form is empty, nothing will happen
             if ($scope.formData.name != undefined && $scope.formData.password != undefined) {
                 $scope.formData.time = Date.now();
+<<<<<<< HEAD
                 $scope.formData.password = b64_hmac_md5(b64_hmac_md5($scope.formData.name, $scope.formData.password), $scope.formData.time);
+=======
+                $scope.formData.password = MD5.b64_hmac_md5(MD5.b64_hmac_md5($scope.formData.name, $scope.formData.password), $scope.formData.time);
+
+>>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336
                 $scope.loading = true;
 
                 // call the create function from our service (returns a promise object)
@@ -25,7 +33,8 @@ angular.module('userLoginController', [])
                         $scope.loading = false;
                         $scope.userData = data;
                         if ($scope.userData.length !== 0) {
-                            window.location.href = "./bank.html?name=" + $scope.formData.name + "&password=" + $scope.formData.password + "&time=" + $scope.formData.time;
+                            window.location.href = "./bank2.html?name=" + $scope.formData.name + "&password=" + $scope.formData.password +
+                                "&time=" + $scope.formData.time;
                             $scope.state = "登录成功"
                         } else
                             $scope.state = "登录失败"

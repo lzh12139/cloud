@@ -35,9 +35,9 @@
         <thead>
             <tr>
                 <th>用户名</th>
-                <th>ID</th>
-                <th>余额</th>
-                <th>理财余额</th>
+                <th>总金额</th>
+                <th>金额</th>
+                <th>理财金额</th>
             </tr>
         </thead>
         <tbody>
@@ -66,6 +66,7 @@
         </tbody>
     </table>
     </div>
+
     <div class="container" style="margin-top:80px">
         <div class="row">
 
@@ -77,10 +78,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">存多少？</span>
                         </div>
-                        <input type="text" class="form-control" ng-model="formData.receiver">
+                        <input type="text" class="form-control" ng-model="formData.amount">
                     </div>
                 </form>
-                <button class="btn button btn-primary" type="submit " ng-click="transfer()">确定</button>
+                <button class="btn button btn-primary" type="submit " ng-click="deposit()">确定</button>
             </div>
             <div class="col-sm-2">
                 <h2 class="text-center">取钱</h2>
@@ -89,10 +90,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">取多少?</span>
                         </div>
-                        <input type="text" class="form-control" ng-model="formData.receiver">
+                        <input type="text" class="form-control" ng-model="formData.amount">
                     </div>
                 </form>
-                <button class="btn button btn-primary" type="submit" ng-click="transfer()">确定</button>
+                <button class="btn button btn-primary" type="submit" ng-click="withdraw()">确定</button>
                 <br><br>
                 <br><br>
                 <br><br>
@@ -127,7 +128,7 @@
 
                 <h2 class="text-center">理财产品</h2>
                 <select class="form-control" id="sel1" ng-model="formData.product"
-                    ng-options="x.name for x in products">
+                    ng-options="x.name as x.name for x in products">
                 </select>
 
                 <form>
