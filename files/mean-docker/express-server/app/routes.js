@@ -26,8 +26,8 @@ module.exports = function (app) {
     });
 
     app.post('/api/login', function (req, res) {
-        check_login(req, function (status) {
-            if (status == "login-success")
+        //check_login(req, function (status) {
+        //    if (status == "login-success")
                 User.find({
                     name: req.body.name,
                 }, function (err, user) {
@@ -35,7 +35,7 @@ module.exports = function (app) {
                         res.send(err);
                     res.json(user)
                 });
-        })
+        //})
     });
 
     app.get('/api/info', function (req, res) {
