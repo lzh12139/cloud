@@ -259,7 +259,8 @@ function check_login(req, callback) {
 	if (now - time > 15 * 60 * 1000)
 		callback("re-login");
 	else {
-		User.find({
+        callback("login-success");
+		/*User.find({
 			name: name,
 		}, function (err, user) {
 			if (user.length == 0)
@@ -271,7 +272,7 @@ function check_login(req, callback) {
 				else
 					callback("wrong-password");
 			}
-		})
+		})*/
 	}
 }
 
