@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-var md5 = require('./md5.js');
-var MD5 = new md5();
-
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336
 angular.module('createUserController', [])
 
     .controller('userController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {
@@ -26,16 +20,7 @@ angular.module('createUserController', [])
             if ($scope.formData.name != undefined && $scope.formData.password != undefined && $scope.formData.password2 != undefined) {
                 $scope.loading = true;
                 if ($scope.formData.password === $scope.formData.password2) {
-<<<<<<< HEAD
                     $scope.formData.password = b64_hmac_md5($scope.formData.name, $scope.formData.password);
-=======
-<<<<<<< HEAD
-                    $scope.formData.password = MD5.b64_hmac_md5($scope.formData.name, $scope.formData.password);
-=======
-                   //$scope.formData.password = md5.b64_hmac_md5($scope.formData.name, $scope.formData.password);
->>>>>>> fbe4d4ef642e7c50c8360d6bf5f116a5c3b37a8b
-
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336
                     Services.createUser($scope.formData)
                         .success(function (data) {
                             $scope.loading = false;
@@ -47,7 +32,6 @@ angular.module('createUserController', [])
             } else alert("请完善信息")
         };
     }]);
-<<<<<<< HEAD
 
     /*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
@@ -305,5 +289,3 @@ function binl2b64(binarray)
   }
   return str;
 }
-=======
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336

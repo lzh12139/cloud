@@ -1,6 +1,3 @@
-var md5 = require('./md5.js');
-var MD5 = new md5();
-
 angular.module('bankController', [])
 
     .controller('bankUserController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {

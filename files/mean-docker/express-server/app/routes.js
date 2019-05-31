@@ -1,10 +1,5 @@
 var BuyRecord = require('./models/buyRecord');
 var User = require('./models/user')
-<<<<<<< HEAD
-=======
-var md5 = require('./md5.js');
-var MD5 = new md5();
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336
 
 function getUsers(res) {
     User.find(function (err, users) {
@@ -273,7 +268,6 @@ function check_login(req, callback) {
     let time = req.body.time;
     let now = Date.now();
 
-<<<<<<< HEAD
 	if (now - time > 15 * 60)
 		callback("re-login");
 	else {
@@ -549,23 +543,3 @@ function binl2b64(binarray)
   }
   return str;
 }
-=======
-    if (now - time > 15 * 60)
-        callback("re-login");
-    else {
-        User.find({
-            name: name,
-        }, function (err, user) {
-            if (user.length === 0)
-                callback("no-user");
-            else {
-                let pw_right = MD5.b64_hmac_md5(user[0].password, time)
-                if (pw_right === pw)
-                    callback("login-success");
-                else
-                    callback("wrong-password");
-            }
-        })
-    }
-}
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336

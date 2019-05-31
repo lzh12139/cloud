@@ -1,6 +1,3 @@
-var md5 = require('./md5.js');
-var MD5 = new md5();
-
 angular.module('userLoginController', [])
     //
     .controller('loginController', ['$scope', '$http', 'Services', function ($scope, $http, Services) {
@@ -17,12 +14,7 @@ angular.module('userLoginController', [])
             // if form is empty, nothing will happen
             if ($scope.formData.name != undefined && $scope.formData.password != undefined) {
                 $scope.formData.time = Date.now();
-<<<<<<< HEAD
                 $scope.formData.password = b64_hmac_md5(b64_hmac_md5($scope.formData.name, $scope.formData.password), $scope.formData.time);
-=======
-                $scope.formData.password = MD5.b64_hmac_md5(MD5.b64_hmac_md5($scope.formData.name, $scope.formData.password), $scope.formData.time);
-
->>>>>>> 5e56fa92f7134ef6e53cb5c8eed9ca7ffcce4336
                 $scope.loading = true;
 
                 // call the create function from our service (returns a promise object)
