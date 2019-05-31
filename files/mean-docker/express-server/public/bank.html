@@ -1,0 +1,123 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="meanBank">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            padding-top: 50px;
+        }
+
+        #todo-list {
+            margin-bottom: 30px;
+        }
+
+        #todo-form {
+            margin-bottom: 50px;
+        }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="js/controllers/bank.js"></script> <!-- load up our controller -->
+    <script src="js/services/todos.js"></script> <!-- load our todo service -->
+    <script src="js/coreBank.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+
+<body ng-controller="bankUserController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>访问用户<span class="label label-info">{{ formData }}</span></h1>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>用户名<span class="label label-info">{{ formData.name }}</span></h1>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>密码<span class="label label-info">{{ formData.password }}</span></h1>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>总金额<span class="label label-info">{{ userData.balance+userData.financing }}元</span></h1>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>可用金额<span class="label label-info">{{ userData.balance }}元</span></h1>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>理财金额<span class="label label-info">{{ userData.financing }}元</span></h1>
+        </div>
+
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="金额"
+                            ng-model="formData.amount">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">存钱</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="金额"
+                            ng-model="formData.amount">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">取钱</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="收款方"
+                            ng-model="formData.receiver">
+                        <input type="text" class="form-control input-lg text-center" placeholder="金额"
+                            ng-model="formData.amount">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="transfer()">转账</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="理财产品"
+                            ng-model="formData.product">
+                        <input type="text" class="form-control input-lg text-center" placeholder="金额"
+                            ng-model="formData.amount">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="buy()">购买</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
