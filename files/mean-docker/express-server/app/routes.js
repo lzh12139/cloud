@@ -58,7 +58,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     if (user1.length != 0) {
                         let oldBalance = Number(user1[0].balance)
@@ -67,7 +66,6 @@ module.exports = function (app) {
                             amount = 0
                         User.update({
                             name: req.body.name,
-                            password: req.body.password,
                         }, {
                             $set: {
                                 'balance': oldBalance + amount
@@ -75,7 +73,6 @@ module.exports = function (app) {
                         }, function () {
                             User.find({
                                     name: req.body.name,
-                                    password: req.body.password,
                                 },
                                 function (err, user2) {
                                     res.json(user2)
@@ -93,7 +90,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     if (user1.length != 0) {
                         let oldBalance = Number(user1[0].balance)
@@ -104,7 +100,6 @@ module.exports = function (app) {
                             amount = oldBalance
                         User.update({
                             name: req.body.name,
-                            password: req.body.password,
                         }, {
                             $set: {
                                 'balance': oldBalance - amount
@@ -112,7 +107,6 @@ module.exports = function (app) {
                         }, function () {
                             User.find({
                                     name: req.body.name,
-                                    password: req.body.password,
                                 },
                                 function (err, user2) {
                                     res.json(user2)
@@ -130,7 +124,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     if (user1.length != 0) {
                         User.find({
@@ -160,14 +153,12 @@ module.exports = function (app) {
                                     }, function () {
                                         User.find({
                                                 name: req.body.name,
-                                                password: req.body.password,
                                             },
                                             function (err, user2) {
                                                 res.json(user2)
                                             })
                                     })
                                 });
-
                             }
                         })
                     }
@@ -181,7 +172,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     if (user1.length != 0) {
                         var finance = Number(user1[0].financing)
@@ -210,7 +200,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     var time = new Date().getTime();
                     var amount = Number(req.body.amount)
@@ -240,7 +229,6 @@ module.exports = function (app) {
             if (status === "login-success")
                 User.find({
                     name: req.body.name,
-                    password: req.body.password,
                 }, function (err, user1) {
                     if (user1.length != 0) {
                         BuyRecord.find({
@@ -274,11 +262,11 @@ function check_login(req, callback) {
 		User.find({
 			name: name,
 		}, function (err, user) {
-			if (user.length === 0)
+			if (user.length == 0)
 				callback("no-user");
 			else {
 				let pw_right = b64_hmac_md5(user[0].password, time)
-				if (pw_right === pw)
+				if (pw_right == pw)
 					callback("login-success");
 				else
 					callback("wrong-password");
